@@ -9,8 +9,6 @@
 int _printf(const char *format, ...)
 {
 	const char *character;
-	/*int i;
-	const char *s;*/
 	va_list args;
 	int count = 0;
 
