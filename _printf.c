@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
+#include <stdio.h>
 
 /**
  * _printf - function prints output on screen
@@ -22,7 +23,8 @@ int _printf(const char *format, ...)
 		if (*character != '%')
 		{
 			_putchar(*character);
-			count++;
+			if (*character != '\0')
+				count++;
 		}
 		else
 		{
