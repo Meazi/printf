@@ -7,6 +7,8 @@
  */
 int _puts(const char *name)
 {
+	const char *cp_name = name;
+
 	if (name == NULL)
 		return (-1);
 
@@ -15,5 +17,22 @@ int _puts(const char *name)
 		_putchar(*name);
 		name++;
 	}
-	return (1);
+	return (char_counter(cp_name));
+}
+/**
+ * char_counter - counts characters
+ * Return: number of character
+ * @name: string passed from _puts
+ */
+
+int char_counter(const char *name)
+{
+	int count = 0;
+
+	while (*name != '\0')
+	{
+		count++;
+		name++;
+	}
+	return (count);
 }

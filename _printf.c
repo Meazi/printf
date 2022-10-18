@@ -12,13 +12,17 @@ int _printf(const char *format, ...)
 	int i;
 	const char *s;
 	va_list args;
+	int count = 0;
 
 	va_start(args, format);
 
 	for (character = format; *character != '\0'; character++)
 	{
 		if (*character != '%')
+		{
 			_putchar(*character);
+			count++;
+		}
 		else
 		{
 			character++;
@@ -28,13 +32,14 @@ int _printf(const char *format, ...)
 			case 'c':
 				i = va_arg(args, int);
 				   _putchar(i);
+				   count++;
 				break;
 			case 's':
 				s = va_arg(args, const char *);
-				 _puts(s);
+				count = count + _puts(s);
 				break;
 			}
 		}
 	}
-	return (0);
+	return (count);
 }
