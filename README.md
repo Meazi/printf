@@ -1,1 +1,1 @@
-printf project
+this is a readme for building your own printf function using a varidac fucntion and this helps because it holds structre and variadc function and alos functional pointers inorder to able understand printf function througly
