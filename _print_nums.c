@@ -26,6 +26,8 @@ int print_int(va_list l, flags_t *f)
  * print_number - helper function that loops through
  * an integer and prints all its digits
  * @n: integer to be printed
+ *
+ * Description: print_number is a function
  */
 void print_number(int n)
 {
