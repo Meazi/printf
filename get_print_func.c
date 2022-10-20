@@ -3,6 +3,8 @@
 /**
  * get_print_func - a function that returns a prefered function pointer
  * @fc: a char to select respective function pointer
+ *
+ * Description: a functional pointer
  * Return: a pointer to a function
  */
 int (*get_print_func(char fc))(va_list l, flags_t *f)
