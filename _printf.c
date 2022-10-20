@@ -3,6 +3,8 @@
 /**
  * _printf - function prints output on screen
  * @format: pointer to the first part of printf
+ *
+ * Description: this is _printf function that contains char and argc
  * Return: 0
  */
 int _printf(const char *format, ...)

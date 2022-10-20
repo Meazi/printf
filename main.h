@@ -20,6 +20,8 @@ typedef struct flags
  * struct print_func - struct to select specific print function
  * @ft: format specifier
  * @p_func: pinter to function
+ *
+ * Description: building a struct that could be access by object
  */
 typedef struct print_func
 {
