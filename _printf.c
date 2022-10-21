@@ -1,50 +1,27 @@
 #include "main.h"
 
 /**
- * _printf - function prints output on screen
- * @format: pointer to the first part of printf
- *
- * Description: this is _printf function that contains char and argc
- * Return: 0
+ * _printf - prints formatted output
+ * @format: format specifier
+ * Return: length of output
  */
 int _printf(const char *format, ...)
 {
-	int (*pfunc)(va_list, flags_t *);
-	const char *p;
-	va_list arguments;
-	flags_t flags = {0, 0, 0};
+	va_list ap;
+	int i = 0, len = 0;
 
-	register int count = 0;
+	va_start(ap, format);
 
-	va_start(arguments, format);
-	if (!format || (format[0] == '%' && !format[1]))
+	if ((!format) || (format[0] == '%' && !format[1]))
 		return (-1);
 	if (format[0] == '%' && format[1] == ' ' && !format[2])
 		return (-1);
-	for (p = format; *p; p++)
-	{
-		if (*p == '%')
-		{
-			p++;
-			if (*p == '%')
-			{
-				count += _putchar(*p);
-				continue;
-			}
-			while (get_flag(*p, &flags))
-			{
-				p++;
-			}
-			pfunc = get_print_func(*p);
-			count += (pfunc)
-				? pfunc(arguments, &flags)
-				: _printf("%%%c", *p);
-		} else
-		{
-			count += _putchar(*p);
-		}
-	}
-	_putchar(-1);
-	va_end(arguments);
-	return (count);
+
+	for (; (format && format[i]); i++)
+	if (format[i] == '%')
+		len += spec(&i, format, ap);
+	else
+		len += _putchar(format[i]);
+		va_end(ap);
+	return (len);
 }

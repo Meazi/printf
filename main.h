@@ -1,44 +1,60 @@
-#ifndef Header_printf
-#define Header_printf
+#ifndef _PRINTF_H_
+#define _PRINTF_H_
+
+#define BUFFER_SIZE 1024
+
+#include <stdio.h>
+#include <unistd.h>
 #include <stdarg.h>
 #include <stdlib.h>
-#include <stdio.h>
-/**
- * struct flags - struct containing flags to "turn on"
- * when a flag specifier is passed to _printf
- * @plus: flag for the '+' character
- * @space: flag for the ' ' character
- * @hash: flag for the '#' character
- */
-typedef struct flags
-{
-	int plus;
-	int space;
-	int hash;
-} flags_t;
-/**
- * struct print_func - struct to select specific print function
- * @ft: format specifier
- * @p_func: pinter to function
- *
- * Description: building a struct that could be access by object
- */
-typedef struct print_func
-{
-	char ft;
-	int (*p_func)(va_list l, flags_t *f);
-} pr_f;
+#include <limits.h>
+#include <float.h>
 
-int (*get_print_func(char fc))(va_list l, flags_t *);
-int get_flag(char s, flags_t *f);
+
+/**
+ * struct mark - struct for format
+ * @sc: 1st member
+ * @f: 2nd member
+ */
+typedef struct mark
+{
+	char *sc;
+	int (*f)(va_list p);
+} mark_t;
+
+
 int _printf(const char *format, ...);
-
 int _putchar(char c);
-int _puts(char *str);
-void print_number(int n);
-int  count_digit(int i);
+int spec(int *i, const char *format, va_list ap);
 
-int print_string(va_list l, flags_t *f);
-int print_char(va_list l, flags_t *f);
-int print_int(va_list l, flags_t *f);
-#endif
+
+/**
+ * struct nc - non custom specifier(flag)
+ * @sum: '+'
+ * @empty: ' '
+ * @hash: '#'
+ */
+typedef struct nc
+{
+	int sum;
+	int empty;
+	int hash;
+} nc_t;
+
+int print_char(va_list p);
+int print_string(va_list p);
+int print_pct(va_list __attribute__((unused)) p);
+int print_decimal(va_list p);
+int print_int(va_list p);
+int print_binary(va_list p);
+int print_u(va_list p);
+int print_o(va_list p);
+int print_x(va_list p);
+int print_Xu(va_list p);
+int print_S(va_list p);
+int auxS_hex(int n);
+int print_reverse(va_list p);
+int print_Rot(va_list __attribute__((unused)) p);
+int print_p(va_list p);
+
+#endif /* _MAIN_H_ */
